@@ -11,9 +11,7 @@
     ?> 
     
     <!-- <main> -->
-        <div class="container">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consectetur deleniti facere fugit quibusdam quisquam quos sapiente sit sunt, tempora! Ab cumque enim ex officiis sed. Culpa minus qui sed.</p>
-        </div>
+
     <!-- </main> -->
     
 </body>
@@ -22,3 +20,4 @@
 <?php
     require_once('footer.php');
 ?>
+
