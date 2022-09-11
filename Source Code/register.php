@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD:Source Code/users/register.php
-    require_once('inc/NewFile.php');
-=======
     require_once('inc/header.php');
->>>>>>> temp-branch:Source Code/register.php
 ?>
 
 <!-- Body Starts -->

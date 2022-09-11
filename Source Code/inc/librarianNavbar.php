@@ -14,8 +14,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav" style="margin-left: auto;">
-                    <li class="nav-item"><a class="nav-link" href="/pages/librarianHome.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/pages/addNewBook.php">Add New Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="librarianHome.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="addNewBook.php">Add New Book</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>

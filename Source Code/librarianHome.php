@@ -1,5 +1,5 @@
 <?php
-    require_once('inc/NewFile.php');
+    require_once('inc/header.php');
 ?>
 
 <!-- Body Starts -->
