@@ -1,24 +1,24 @@
 <!-- Navigation Bar Starts -->
     <nav class="navbar navbar-expand-lg sticky-top bg-dark-blue">
         <div class="container">
-            <a href="/app/views/pages/index.php">
-                <img src="/public/res/favicon.png" width="50px" alt="Book Icon">
+            <a href="/pages/index.php">
+                <img src="/res/favicon.png" width="50px" alt="Book Icon">
             </a>
             <span class="navbar-brand mr-2">
                 IIT LIBRARY
             </span>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="/public/res/menu.png" width="50px" alt="Menu Icon">
+                <img src="/res/menu.png" width="50px" alt="Menu Icon">
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav" style="margin-left: auto;">
-                        <li class="nav-item"><a class="nav-link" href="/app/views/pages/index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/pages/index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Librarian</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Admin</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/app/views/users/register.php">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/users/register.php">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
             </div>

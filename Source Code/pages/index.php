@@ -1,11 +1,11 @@
 <?php
-    require_once('app/views/inc/header.php');
+    require_once('inc/NewFile.php');
 ?>
 
 <!-- Body Starts -->
     <body>
         <?php
-            require_once ('app/views/inc/navbar.php');
+            require_once ('inc/navbar.php');
         ?>
 
         <!-- <main> -->
@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-center">
                     <div class="search">
                         <input class="search-input form-label" type="text" name="" placeholder="Looking for your desired book? Search Now!!!">
-                        <img src="/public/res/search.png" alt="Search Icon" width="50px">
+                        <img src="/res/search.png" alt="Search Icon" width="50px">
                     </div>
                 </div>
             </div>
@@ -26,6 +26,6 @@
     <!-- Body Ends -->
 
 <?php
-    require_once ('app/views/inc/footer.php');
+    require_once ('inc/footer.php');
 ?>
 
