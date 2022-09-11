@@ -1,5 +1,5 @@
 <?php
-    require_once('header.php');
+    require_once('inc/header.php');
 ?>
 
 <!-- Body Starts -->
@@ -7,7 +7,7 @@
 <body>
 
     <?php
-        require_once('navbar.php');
+        require_once('inc/navbar.php');
     ?> 
     
     <!-- <main> -->
@@ -18,6 +18,6 @@
 <!-- Body Ends -->
 
 <?php
-    require_once('footer.php');
+    require_once('inc/footer.php');
 ?>
 
