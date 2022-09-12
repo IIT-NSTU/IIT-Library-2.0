@@ -3,7 +3,6 @@
 ?>
 
 <!-- Body Starts -->
-
 <body>
 
 <?php

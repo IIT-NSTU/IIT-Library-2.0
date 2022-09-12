@@ -12,9 +12,9 @@
                         Noakhali-3814, Bangladesh
                     </p>
 
-                    <img src="/res/envelope.png" width="20px" alt="Envelop Icon">
+                    <img src="res/envelope.png" width="20px" alt="Envelop Icon">
                     <a href="mailto:iit@nstu.edu.bd">iit@nstu.edu.bd</a> <br>
-                    <img src="/res/call.png" width="20px" alt="Call Icon">
+                    <img src="res/call.png" width="20px" alt="Call Icon">
                     <a href="tel:01883-009900">01883-009900</a>
                 </div>
             </div>
