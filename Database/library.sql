@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2022 at 08:36 AM
+-- Generation Time: Sep 12, 2022 at 08:42 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -74,6 +74,7 @@ CREATE TABLE `librarian` (
   `pa_post_code` char(4) NOT NULL,
   `mobile_number` char(11) NOT NULL,
   `email_address` varchar(30) NOT NULL,
+  `username` char(20) NOT NULL,
   `password` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -113,6 +114,7 @@ CREATE TABLE `user` (
   `session` char(9) NOT NULL,
   `designation` char(20) NOT NULL,
   `pin` char(10) NOT NULL,
+  `username` char(20) NOT NULL,
   `password` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,7 +140,8 @@ ALTER TABLE `borrow`
 -- Indexes for table `librarian`
 --
 ALTER TABLE `librarian`
-  ADD PRIMARY KEY (`librarian_id`);
+  ADD PRIMARY KEY (`librarian_id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `requested_books`
@@ -150,7 +153,8 @@ ALTER TABLE `requested_books`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Constraints for dumped tables
