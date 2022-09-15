@@ -119,8 +119,8 @@
                     document.getElementById("otherData").innerHTML = ""+
                         "<div class='container mt-3 mb-3'>" +
                             "<div class='form-group mb-3'>" +
-                                "<label class='form-label' for='nid'>NID <sup>*</sup></label>" +
-                                "<input type='text' placeholder='Type your NID number' name='nid' class='form-control' required>" +
+                                "<label class='form-label' for='nid'>PID <sup>*</sup></label>" +
+                                "<input type='text' placeholder='Type your PID number' name='nid' class='form-control' required>" +
                             "</div>" +
                             "<div  class='form-group mb-3'>" +
                                 "<label class='form-label' for='rank'>Select Rank<sup>*</sup></label>" +
@@ -149,8 +149,8 @@
                     document.getElementById("otherData").innerHTML = ""+
                         "<div class='container mt-3 mb-3'>" +
                             "<div class='form-group mb-3'>" +
-                                "<label class='form-label' for='nid'>NID <sup>*</sup></label>" +
-                                "<input type='text' placeholder='Type your NID number' name='nid' class='form-control' required>" +
+                                "<label class='form-label' for='nid'>PID <sup>*</sup></label>" +
+                                "<input type='text' placeholder='Type your PID number' name='nid' class='form-control' required>" +
                             "</div>" +
                             "<div  class='form-group mb-3'>" +
                                 "<label class='form-label' for='rank'>Select Rank<sup>*</sup></label>" +
