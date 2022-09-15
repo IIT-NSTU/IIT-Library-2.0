@@ -16,7 +16,7 @@
                     <ul class="navbar-nav" style="margin-left: auto;">
                         <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Librarian</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Director</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>

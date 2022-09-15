@@ -5,7 +5,7 @@
 <!-- Body Starts -->
     <body>
         <?php
-            require_once('inc/librarianNavbar.php');
+            require_once('inc/directorNavbar.php');
         ?>
 
         <!-- <main> -->
