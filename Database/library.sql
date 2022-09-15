@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2022 at 09:53 AM
+-- Generation Time: Sep 15, 2022 at 11:39 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -102,9 +102,7 @@ CREATE TABLE `borrow` (
 --
 
 INSERT INTO `borrow` (`borrow_id`, `user_id`, `accession_number`, `borrow_date`, `due_date`, `return_date`, `fine_amount`) VALUES
-('0000000001', '10000001', '100001', '2022-09-15', '2022-09-21', '2022-09-21', 0),
-('0000000002', '10000002', '100002', '2022-09-15', '2022-09-21', '2022-09-23', 4),
-('0000000003', '10000001', '100001', '2022-09-15', '2022-09-21', '2022-09-22', 2);
+('0000000002', '10000002', '100002', '2022-09-15', '2022-09-21', '2022-09-23', 0);
 
 -- --------------------------------------------------------
 
@@ -148,8 +146,18 @@ CREATE TABLE `requested_books` (
   `title` varchar(50) NOT NULL,
   `author` varchar(20) NOT NULL,
   `edition` int(2) NOT NULL,
-  `other_details` varchar(100) NOT NULL
+  `publisher` varchar(20) NOT NULL,
+  `source` varchar(50) NOT NULL,
+  `image_field` varchar(50) NOT NULL,
+  `isbn` char(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `requested_books`
+--
+
+INSERT INTO `requested_books` (`user_id`, `title`, `author`, `edition`, `publisher`, `source`, `image_field`, `isbn`) VALUES
+('10000001', 'C Programming in One Hour a Day, Sams Teach Yourse', 'Bradley Jones', 7, 'Sams Publishing', 'Amazon', '', '9780789751997');
 
 -- --------------------------------------------------------
 

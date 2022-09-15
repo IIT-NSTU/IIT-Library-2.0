@@ -1,0 +1,45 @@
+1. Add New Book
+INSERT INTO `book` (`accession_number`, `title`, `author`, `edition`, `year_of_publication`, `publisher`, `number_of_pages`, `price`, `source`, `image_field`, `isbn`, `remarks`, `electronic_copy_path`) VALUES
+('100001', 'Teach Yourself C', 'Herbert Schildt, Mcg', 3, 1997, 'McGraw-Hill Osborne ', 640, 17098, 'Rkomari', '', '0078823110', '', '')
+
+2. New Book Requests
+SELECT * FROM requested_books
+
+2. New Book Requests (From A Specific User)
+SELECT * FROM requested_books where user_id = 10000001
+
+2. Sending New Book Request (From a Specific user)
+INSERT INTO `requested_books` (`user_id`, `title`, `author`, `edition`, `publisher`, `source`, `image_field`, `isbn`) VALUES
+('10000001', 'C Programming in One Hour a Day, Sams Teach Yourse', 'Bradley Jones', 7, 'Sams Publishing', 'Amazon', '', '9780789751997');
+
+
+3. Uers From Librarian's End
+SELECT * FROM user where status = 0
+
+3. Uers From Director's End
+SELECT * FROM user where status = 1
+
+4. Fine Librarian's End
+SELECT * FROM borrow WHERE fine_amount > 0
+
+4. Fine User's End
+SELECT * FROM borrow WHERE fine_amount > 0 && user_id = 10000001
+
+4. Update Fine Librarian's End
+UPDATE borrow SET fine_amount = 0 WHERE borrow.borrow_id = 0000000002
+
+5. Profile User's End
+SELECT * from user WHERE user_id = 10000001
+
+5. Profile Librarian's END
+SELECT * from librarian WHERE librarian_id = 10000001
+
+6. Add User
+INSERT INTO `user` (`user_id`, `name`, `father_name`, `mother_name`, `date_of_birth`, `present_address`, `pr_post_code`, `permanent_address`, `pa_post_code`, `mobile_number`, `email_address`, `roll_number`, `session`, `designation`, `pin`, `username`, `password`, `status`) VALUES
+('10000001', 'Abdullah Alif 1', 'Mohammad', 'Akter', '2000-08-09', 'Maijdee, Noakhali', '3800', 'Kasba, Brahmanbaria', '3460', '01705197886', 'abdullahalif1404@gmail.com', 'ASH1925001M', '2018-19', 'Student', '1231', 'abdullahalif1404', '1234', 0)
+
+7. Add Librarian
+INSERT INTO `librarian` (`librarian_id`, `name`, `present_address`, `pr_post_code`, `permanent_address`, `pa_post_code`, `mobile_number`, `email_address`, `username`, `password`) VALUES
+('10000001', 'Abdullah Alif 1', 'Maijdee, Noakhali', '3800', 'Kasba, Brahmanbaria', '3460', '01705197886', 'abdullahalif1404@gmail.com', 'abdullahalif1404', '1234')
+
+

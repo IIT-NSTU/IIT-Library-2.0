@@ -11,7 +11,7 @@
     ?>
 
     <!-- <main> -->
-        <div class="container mt-5 mb-5">
+        <div class="container mt-5 mb-5 ">
             <table class="table table-bordered table-striped">
                 <th>
                     <h2 class="text-center fw-bold">Add New Book</h2>
