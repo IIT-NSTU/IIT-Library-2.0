@@ -38,8 +38,12 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label" for="date of publication">Date of Publication<sup>*</sup></label>
-                                <input type="date" placeholder="Type date of publication" class="form-control" required>
+                                <input id="datePickerId" type="date" placeholder="dd-mm-yyyy" class="date form-control">
+                                <script>
+                                    document.getElementById("datePickerId").max = new Date().toISOString().split("T")[0];
+                                </script>
                             </div>
+
                             <div class="form-group mb-3">
                                 <label class="form-label" for="book publisher">Book Publisher<sup>*</sup></label>
                                 <input type="text" placeholder="Type publisher of the book" class="form-control" required>
