@@ -3,21 +3,21 @@
 ?>
 
 <!-- Body Starts -->
-<body>
+<body style="background-image: url('res/background3.jpg')">
 
 <?php
     require_once('inc/navbar.php');
 ?>
 
     <!-- <main> -->
-        <div class="container mt-5 mb-5">
-            <table class="table table-bordered table-striped">
+        <div class="container mt-5 mb-5 register rounded-border-white-background">
+            <table class="table table-striped">
                 <th>
                     <h2 class="text-center fw-bold">Registration</h2>
                 </th>
                 <tr>
                     <td>
-                        <form action="" id="signup" method="POST">
+                        <form action="" id="signup" method="POST" >
                                 <div class="container mt-3 mb-3">
                                     <div class="row">
                                         <div class="card col-lg-3 col-md-6 col-sm-12 mt-lg-1 mt-md-3 mt-sm-2">
@@ -42,7 +42,6 @@
                             <div id="otherData">
                                 
                             </div>
-
                         </form>
                     </td>
                 </tr>
@@ -205,8 +204,8 @@
                                         "<input type='text' placeholder='Type your mother's name' name='name' class='form-control'>" +
                                     "</div>" +
                                     "<div class='form-group mb-3'>" +
-                                        "<label class='form-label' for='date of birth'>Date Of Birth <sup>*</sup></label>" + 
-                                        "<input type='date' placeholder='Type your date of birth' name='name' class='form-control' required>" +
+                                        "<label class='form-label' for='date_of_birth' >Date Of Birth <sup>*</sup></label>" +
+                                        "<input id='date_of_birth' type='date' placeholder='Type your date of birth' name='name' class='form-control' required>" +
                                     "</div>" +
                                     "<div class='form-group mb-3'>" +
                                         "<label class='form-label' for='present address'>Present Address <sup>*</sup></label>" +
