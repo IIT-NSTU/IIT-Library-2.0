@@ -27,7 +27,7 @@
 
     <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = "";
+            $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = $password = "";
 
             if (isset($_POST['present_address_post_code'])) {
                 $present_address_post_code = $_POST['present_address_post_code'];
@@ -49,11 +49,16 @@
                 $phone = $_POST['phone'];
             }
 
+            if (isset($_POST['password'])) {
+                $password = $_POST['password'];
+            }
+
             $conn->query("UPDATE `librarian` SET `present_address` = '{$present_address}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `pr_post_code` = '{$present_address_post_code}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `permanent_address` = '{$permanent_address}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `pa_post_code` = '{$permanent_address_post_code}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `mobile_number` = '{$phone}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
+            $conn->query("UPDATE `librarian` SET `password` = '{$password}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             outputMessage("Data Updated Successfully!!!", "Please Refresh the Page!", "success");
         }
     ?>
@@ -99,6 +104,12 @@
                                                 <div class='col-md-12 mt-3'>
                                                     <label class='form-label'>Mobile Number</label>
                                                     <input type='text' class='form-control' name='phone' value='{$row['mobile_number']}' required>
+                                                </div> 
+                                            </div>  
+                                            <div class='row'>
+                                                <div class='col-md-12 mt-3'>
+                                                    <label class='form-label'>Password</label>
+                                                    <input type='password' class='form-control' name='password' value='{$row['password']}' required>
                                                 </div> 
                                             </div>                           
                                             <div class='mt-5 text-center'>

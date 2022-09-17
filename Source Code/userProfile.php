@@ -27,7 +27,7 @@
 
         <?php
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $father_name = $mother_name = $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = "";
+                $father_name = $mother_name = $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = $password = "";
 
                 if (isset($_POST['father_name'])) {
                     $father_name = $_POST['father_name'];
@@ -57,6 +57,10 @@
                     $phone = $_POST['phone'];
                 }
 
+                if (isset($_POST['password'])) {
+                    $password = $_POST['password'];
+                }
+
                 $conn->query("UPDATE `user` SET `father_name` = '{$father_name}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `mother_name` = '{$mother_name}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `present_address` = '{$present_address}' WHERE `user`.`user_id` = '{$userID}'");
@@ -64,6 +68,7 @@
                 $conn->query("UPDATE `user` SET `permanent_address` = '{$permanent_address}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `pa_post_code` = '{$permanent_address_post_code}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `mobile_number` = '{$phone}' WHERE `user`.`user_id` = '{$userID}'");
+                $conn->query("UPDATE `user` SET `password` = '{$password}' WHERE `user`.`user_id` = '{$userID}'");
                 outputMessage("Data Updated Successfully!!!", "Please Refresh the Page!", "success");
             }
         ?>
@@ -115,6 +120,10 @@
                                         <div class='col-md-12 mt-3'>
                                             <label class='form-label'>Postcode</label>
                                             <input type='number' class='form-control' name='permanent_address_post_code' value='{$row['pa_post_code']}' required>
+                                        </div>
+                                        <div class='col-md-12 mt-3'>
+                                            <label class='form-label'>Password</label>
+                                            <input type='password' class='form-control' name='password' value='{$row['password']}' required>
                                         </div>
                                     </div>                           
                                     <div class='mt-5 text-center'>
