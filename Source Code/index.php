@@ -1,6 +1,7 @@
 <?php
     require_once('inc/header.php');
     require_once('inc/config.php');
+    require_once('inc/functions.php');
 ?>
 
 <!-- Body Starts -->
@@ -17,23 +18,31 @@
             }
             else{
                 $page = 1;
-            };
+            }
             $startFrom = ($page - 1) * $limit;
         ?>
         <!-- <main> -->
             <div class="mt-5">
                 <div class="d-flex justify-content-center">
                     <div class="search">
-                        <input class="search-input form-label" type="text" name="" placeholder="Looking for your desired book? Search Now!!!">
-                        <img src="res/search.png" alt="Search Icon" width="50px">
+                        <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
+                            <input class="search-input form-label" type="text" name="userInput" placeholder="Looking for your desired book? Type and Hit Enter!!!" required>
+                            <img src="res/search.png" alt="Search Icon" width="50px" onclick="show()">
+                        </form>
                     </div>
                 </div>
             </div>
 
             <div class="container mb-5">
-                <div class="row">
+                <div class="row" id="showBooks">
                     <?php
-                        $sql = "SELECT * FROM `book` LIMIT $startFrom, $limit";
+                        if (isset($_POST['userInput'])) {
+                            $searchItem = $_POST['userInput'];
+                            $sql = "SELECT * FROM book WHERE book.title LIKE '%{$searchItem}%' LIMIT $startFrom, $limit";
+                        } else {
+                            $sql = "SELECT * FROM `book` LIMIT $startFrom, $limit";
+                        }
+
                         global $conn;
                         $result = $conn->query($sql);
 
@@ -62,7 +71,14 @@
             </div>
 
             <?php
-                $result = $conn->query("SELECT isbn FROM `book`");
+                if (isset($_POST['userInput'])) {
+                    $searchItem = $_POST['userInput'];
+                    $sql = "SELECT isbn FROM book WHERE book.title LIKE '%{$searchItem}%'";
+                } else {
+                    $sql = "SELECT isbn FROM `book`";
+                }
+
+                $result = $conn->query($sql);
                 $total_records = $result->num_rows;
                 $total_pages = ceil($total_records / $limit);
 

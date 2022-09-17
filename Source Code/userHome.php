@@ -1,11 +1,20 @@
 <?php
+    session_start();
     require_once('inc/header.php');
+    require_once('inc/functions.php');
 ?>
 
 <!-- Body Starts -->
     <body>
         <?php
             require_once('inc/userNavbar.php');
+        ?>
+
+        <?php
+            if ($_SESSION['loggedIn'] == 1) {
+                outputMessage("Successfully Logged In!!!", "Welcome to IIT Library");
+                $_SESSION['loggedIn'] = 0;
+            }
         ?>
 
         <!-- <main> -->

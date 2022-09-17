@@ -5,7 +5,7 @@
                 <img src="res/favicon.png"" width="50px" alt="Book Icon">
             </a>
             <span class="navbar-brand mr-2">
-                Director
+                User
             </span>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
