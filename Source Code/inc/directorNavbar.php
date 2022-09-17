@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav" style="margin-left: auto;">
                     <li class="nav-item"><a class="nav-link" href="directorHome.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="directorLibrarian.php">Librarians</a></li>
+                    <li class="nav-item"><a class="nav-link" href="directorLibrarian.php">Add Librarian</a></li>
                     <li class="nav-item"><a class="nav-link" href="directorUsers.php">Users</a></li>
                     <li class="nav-item"><a class="nav-link" href="directorBookReport.php">Book Report</a></li>
                     <li class="nav-item"><a class="nav-link" href="directorProfile.php">Profile</a></li>

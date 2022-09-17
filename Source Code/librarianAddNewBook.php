@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once('inc/header.php');
+    require_once('inc/config.php');
     require_once('inc/functions.php');
 ?>
 
@@ -12,14 +13,14 @@
 
     <!-- Body Starts -->
 
-    <body>
+    <body style="background-image: url('res/background3.jpg')">
 
     <?php
         require_once('inc/librarianNavbar.php');
     ?>
 
     <!-- <main> -->
-        <div class="container mt-5 mb-5 ">
+        <div class="container mt-5 mb-5 register rounded-border-white-background">
             <table class="table table-bordered table-striped">
                 <th>
                     <h2 class="text-center fw-bold">Add New Book</h2>
@@ -27,11 +28,6 @@
                 <tr>
                     <td>
                         <form action="" id="" method="POST">
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="accession number">Accession Number<sup>*</sup></label>
-                                <input type="number" placeholder="Type accession number of the book" class="form-control" required>
-                                <span class="form-text">Must be 6 digits</span>
-                            </div>
                             <div class="form-group mb-3">
                                 <label class="form-label" for="book title">Book Title<sup>*</sup></label>
                                 <input type="text" placeholder="Type title of the book" class="form-control" required>
@@ -78,7 +74,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label" for="electronic copy">Electronic Copy</label>
-                                <input type="text" placeholder="Type path of the electronic copy" class="form-control" required>
+                                <input type="file" placeholder="Insert pdf" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label" for="number of books">Number of Books<sup>*</sup></label>

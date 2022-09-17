@@ -59,7 +59,7 @@
 
                 global $conn;
                 if ($conn->query($sql)) {
-                    outputMessage("Registration Data Sent Successfully!!!", "Wait For the Confirmation!", "success");
+                    outputMessage("Librarian Data Added Successfully!!!", "Librarian Will Be Notified!", "success");
                 } else {
                     outputMessage("Invalid Registration Data!!!", "Please Try again", "danger");
                 }

@@ -81,6 +81,10 @@
                                         <label class='form-label'>Source</label>
                                         <input type='text' class='form-control' placeholder='{$row['source']}' disabled>
                                     </div>
+                                     <div class='col-md-12 mt-3'>
+                                           <label class='form-label'>ISBN</label>
+                                           <input type='text' class='form-control' placeholder='{$row['isbn']}' disabled>
+                                     </div>
                                     <div class='col-md-12 mt-3'>
                                         <label class='form-label'>Electronic Copy</label>
                                         <input type='text' class='form-control' placeholder='$electronicCopy' disabled>
