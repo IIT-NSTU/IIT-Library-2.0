@@ -5,7 +5,7 @@
 ?>
 
 <?php
-    if(!isset($_SESSION['user_id'])) {
+    if(!isset($_SESSION['librarian_id'])) {
         header("location: index.php");
     }
 ?>

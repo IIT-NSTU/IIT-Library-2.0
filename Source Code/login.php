@@ -34,29 +34,38 @@
 
             if ($type == "user") {
                 $sql = "SELECT user_id FROM `user` WHERE username = '$username' && password = '$password'";
-                $location = "userHome.php";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows == 1) {
+                    $row = $result->fetch_assoc();
+                    $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['showMessage'] = 1;
+                    header("location: userHome.php");
+                } else {
+                    outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                }
             } else if ($type == "librarian") {
                 $sql = "SELECT librarian_id FROM `librarian` WHERE username = '$username' && password = '$password'";
-                $location = "librarianHome.php";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows == 1) {
+                    $row = $result->fetch_assoc();
+                    $_SESSION['librarian_id'] = $row['librarian_id'];
+                    $_SESSION['showMessage'] = 1;
+                    header("location: librarianHome.php");
+                } else {
+                    outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                }
             } else {
                 if ($username == "admin" && $password == "admin") {
                     $_SESSION['showMessage'] = 1;
-                    $_SESSION['user_id'] = "admin";
+                    $_SESSION['adminSession'] = "admin";
                     header('location: directorHome.php');
                 }
             }
 
-            $result = $conn->query($sql);
 
-            if ($result->num_rows == 1) {
-                $row = $result->fetch_assoc();
-                $userID = $row['user_id'];
-                $_SESSION['user_id'] = $userID;
-                $_SESSION['showMessage'] = 1;
-                header("location: $location");
-            } else {
-                outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
-            }
+
         }
         ?>
 

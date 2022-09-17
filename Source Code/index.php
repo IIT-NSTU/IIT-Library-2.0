@@ -11,7 +11,7 @@
         ?>
 
         <?php
-            $limit = 4;
+            $limit = 8;
 
             if (isset($_GET["page"])) {
                 $page  = $_GET["page"];
@@ -51,8 +51,8 @@
                                 "<div class='col-lg-3 col-md-6 col-sm-10 mt-5'>
                                     <div class='card card-border text-center' style='height: 100%;'>
                                         <div class='card-header' >
-                                            <a href='bookInfo.php'>
-                                                <img src='assets/img/{$row['image_field']}' alt='Book Picture' class='img-fluid'>
+                                            <a href='bookInfo.php?isbn={$row['isbn']}'>
+                                                <img src='assets/cover/{$row['image_field']}' alt='Book Picture' class='img-fluid'>
                                             </a>
                                         </div>
                                         <div class='card-body'>
@@ -61,7 +61,7 @@
                                             </h5>
                                         </div>
                                         <div class='card-footer bg-dark-blue'>
-                                            <a href='bookInfo.php' class='nav-link'>More Details</a>
+                                            <a href='bookInfo.php?isbn={$row['isbn']}' class='nav-link'>More Details</a>
                                         </div>
                                     </div>
                                 </div>";

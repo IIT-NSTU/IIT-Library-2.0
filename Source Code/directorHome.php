@@ -5,7 +5,7 @@
 ?>
 
 <?php
-    if(!isset($_SESSION['user_id'])) {
+    if(!isset($_SESSION['adminSession'])) {
         header("location: index.php");
     }
 ?>

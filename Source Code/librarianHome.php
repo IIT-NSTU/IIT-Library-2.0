@@ -4,6 +4,12 @@
     require_once('inc/functions.php');
 ?>
 
+<?php
+    if(!isset($_SESSION['librarian_id'])) {
+        header("location: index.php");
+    }
+?>
+
 <!-- Body Starts -->
     <body>
         <?php
