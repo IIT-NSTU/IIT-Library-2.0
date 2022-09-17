@@ -40,7 +40,7 @@
                     <div class='row justify-content-center rounded-border-white-background'> 
                         <div class='col-md-5'> 
                             <div class='d-flex flex-column align-items-center text-center p-3 py-5'>
-                                <img class='mt-5' src='assets/cover/{$row['image_field']}'>
+                                <img class='mt-5' src='assets/cover/{$row['image_field']}' style='max-height: 500px; max-width: 350px;'>
                                 <span class='form-label mt-5'>Title : {$row['title']}</span>
                                 <span class='form-label'>Author : {$row['author']}</span>
                             </div>

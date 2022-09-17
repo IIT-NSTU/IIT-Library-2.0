@@ -40,7 +40,7 @@
                                 <div class='row justify-content-center rounded-border-white-background'> 
                                     <div class='col-md-5'> 
                                         <div class='d-flex flex-column align-items-center text-center p-3 py-5'>
-                                            <img class='mt-5' src='assets/cover/{$row['image_field']}'>
+                                            <img class='mt-5' src='assets/cover/{$row['image_field']}' style='max-height: 500px; max-width: 350px;'>
                                             <span class='form-label mt-5'>Title : {$row['title']}</span>
                                             <span class='form-label'>Author : {$row['author']}</span>
                                         </div>
@@ -93,7 +93,14 @@
                                                 } else {
                                                     echo "<input type='button' class='form-control btn-danger text-light fw-bold' id='$electronicCopy' value='Not Available'>";
                                                 }
-                                                echo"</div>
+                                                echo " </div>                                                  
+                                                <div class='col-md-12 mt-3'>
+                                                     <label class='form-label'>Return Date</label>
+                                                     <input type='date' class='form-control' placeholder='Return Date' required>
+                                                </div>
+                                                <div class='col-md-12 mt-3'>
+                                                     <button type='submit' class='form-control btn-success text-light fw-bold'  onclick=student()>Borrow Book</button>
+                                                </div>
                                             </div>                
                                         </div>
                                     </div>
@@ -101,9 +108,15 @@
                             </div>";
         ?>
 
+
+
     <script>
         function openFile() {
             window.open("assets/pdf/<?php echo $row['electronic_copy_path'];?>");
+        }
+
+        function setBorrowField() {
+
         }
     </script>
     <!-- </main> -->
