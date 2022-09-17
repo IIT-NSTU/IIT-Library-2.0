@@ -14,10 +14,10 @@
     <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $userId = $name = $father_name = $mother_name = $date_of_birth = $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = $email = $roll = $pin = $session = $designation = $password = $confirmPassword = "";
+            $userId = $name = $father_name = $mother_name = $date_of_birth = $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = $email = $roll = $pin = $session = $designation = $userName = $password = $confirmPassword = "";
 
-            if (isset($_POST['userName'])) {
-                $name = $_POST['userName'];
+            if (isset($_POST['name'])) {
+                $name = $_POST['name'];
             }
 
             if (isset($_POST['father_name'])) {
@@ -92,37 +92,16 @@
                 $designation = $_POST['staff_designation'];
             }
 
-            if (isset($_POST['student_password'])) {
-                $password = $_POST['student_password'];
+            if (isset($_POST['userName'])) {
+                $userName = $_POST['userName'];
             }
 
-            if (isset($_POST['teacher_password'])) {
-                $password = $_POST['teacher_password'];
+            if (isset($_POST['password'])) {
+                $password = $_POST['password'];
             }
 
-            if (isset($_POST['officer_password'])) {
-                $password = $_POST['officer_password'];
-            }
-
-            if (isset($_POST['staff_password'])) {
-                $password = $_POST['staff_password'];
-            }
-
-
-            if (isset($_POST['student_confirm_password'])) {
-                $confirmPassword = $_POST['student_confirm_password'];
-            }
-
-            if (isset($_POST['teacher_confirm_password'])) {
-                $confirmPassword = $_POST['teacher_confirm_password'];
-            }
-
-            if (isset($_POST['officer_confirm_password'])) {
-                $confirmPassword = $_POST['officer_confirm_password'];
-            }
-
-            if (isset($_POST['staff_confirm_password'])) {
-                $confirmPassword = $_POST['staff_confirm_password'];
+            if (isset($_POST['confirm_password'])) {
+                $confirmPassword = $_POST['confirm_password'];
             }
 
             if ($password != $confirmPassword) {
@@ -132,8 +111,8 @@
             $status = "new";
 
             global $conn;
-            $sql = "INSERT INTO `user` (`user_id`, `name`, `father_name`, `mother_name`, `date_of_birth`, `present_address`, `pr_post_code`, `permanent_address`, `pa_post_code`, `mobile_number`, `email_address`, `roll_number`, `session`, `designation`, `pin`, `password`, `status`) VALUES
-            ('$userId', '$name', '$father_name', '$mother_name', '$date_of_birth', '$present_address', '$present_address_post_code', '$permanent_address', '$permanent_address_post_code', '$phone', '$email', '$roll', '$session', '$designation', '$pin', '$password', '$status')";
+            $sql = "INSERT INTO `user` (`user_id`, `name`, `father_name`, `mother_name`, `date_of_birth`, `present_address`, `pr_post_code`, `permanent_address`, `pa_post_code`, `mobile_number`, `email_address`, `roll_number`, `session`, `designation`, `pin`, `username`, `password`, `status`) VALUES
+            ('$userId', '$name', '$father_name', '$mother_name', '$date_of_birth', '$present_address', '$present_address_post_code', '$permanent_address', '$permanent_address_post_code', '$phone', '$email', '$roll', '$session', '$designation', '$pin', '$userName', '$password', '$status')";
 
             if ($conn->query($sql)) {
                 outputMessage("Registration Data Sent Successfully!!!", "Wait For the Confirmation!", "success");
@@ -177,6 +156,10 @@
                             <div id="otherData">
                                 
                             </div>
+
+                            <div id="passwordData">
+
+                            </div>
                         </form>
                     </td>
                 </tr>
@@ -189,7 +172,7 @@
                         "<div>" +
                             "<div class='form-group mb-3'>" +
                                 "<label class='form-label' for='name'>Name <sup>*</sup></label>" +
-                                "<input type='text' placeholder='Type your name' name='userName' class='form-control' required>" +
+                                "<input type='text' placeholder='Type your name' name='name' class='form-control' required>" +
                             "</div>" +
                             "<div class='form-group mb-3'>" +
                                 "<label class='form-label' for='father's name'>Father's Name </label>" +
@@ -252,18 +235,8 @@
                                     "<option value='2016-17'>2017-18</option>" +
                                 "</select>" +
                             " </div>" +
-                            "<div class='form-group mb-3'>" +
-                                "<label class='form-label' for='password'>Password <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Password' name='student_password' class='form-control' required>" +
-                            "</div>" +
-                            "<div  class='form-group mb-3'>" +
-                                "<label class='form-label' for='confirm_password'>Confirm password: <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Re-type Password' name='student_confirm_password' class='form-control' required>" +
-                            " </div>" +
-                            "<div>" +
-                                "<input class='btn bg-dark-blue text-light fw-bold' type='submit' name='student' value='Send Registration Request'>" +
-                            "</div>" +
                         "</div>";
+                    endPart();
                 }
 
                 function teacher() {
@@ -288,18 +261,8 @@
                                     "<option value='professor'>Professor</option>" +
                                 "</select>" +
                             " </div>" +
-                            "<div class='form-group mb-3'>" +
-                                "<label class='form-label' for='password'>Password <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Password' name='teacher_password' class='form-control' required>" +
-                                "</div>" +
-                            "<div  class='form-group mb-3'>" +
-                                "<label class='form-label' for='confirm_password'>Confirm password: <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Re-type Password' name='teacher_confirm_password' class='form-control' required>" +
-                            " </div>" +
-                            "<div>" +
-                                "<input class='btn bg-dark-blue text-light fw-bold' type='submit' value='Send Registration Request'>" +
-                            "</div>" +
                         "</div>";
+                    endPart();
                 }
 
                 function officer() {
@@ -321,18 +284,8 @@
                                     "<option value='sectionOfficer'>Section Officer</option>" +
                                 "</select>" +
                             "</div>" +
-                            "<div class='form-group mb-3'>" +
-                                "<label class='form-label' for='password'>Password <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Password' name='officer_password' class='form-control' required>" +
-                            "</div>" +
-                            "<div  class='form-group mb-3'>" +
-                                "<label class='form-label' for='confirm_password'>Confirm password: <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Re-type Password' name='officer_confirm_password' class='form-control' required>" +
-                            " </div>" +
-                            "<div>" +
-                                "<input type='submit' class='btn bg-dark-blue text-light fw-bold' value='Send Registration Request'>" +
-                            "</div>" +
                         "</div>";
+                    endPart();
                 }
 
                 function staff() {
@@ -355,14 +308,25 @@
                                     "<option value='labAssistant'>Lab Assistant</option>" +
                                 "</select>" +
                             "</div>" +
+                        "</div>";
+                    endPart();
+                }
+
+                function endPart() {
+                    document.getElementById("passwordData").innerHTML = ""+
+                        "<div class='container mt-3 mb-3'>"+
+                            "<div class='form-group mb-3'>" +
+                                "<label class='form-label' for='password'>Username<sup>*</sup></label>" +
+                                "<input type='text' placeholder='Type your username' name='userName' class='form-control' required>" +
+                            "</div>" +
                             "<div class='form-group mb-3'>" +
                                 "<label class='form-label' for='password'>Password <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Password' name='staff_password' class='form-control' required>" +
+                                "<input type='password' placeholder='Password' name='password' class='form-control' required>" +
                             "</div>" +
                             "<div  class='form-group mb-3'>" +
                                 "<label class='form-label' for='confirm_password'>Confirm password: <sup>*</sup></label>" +
-                                "<input type='password' placeholder='Re-type Password' name='staff_confirm_password' class='form-control' required>" +
-                            " </div>" +
+                                "<input type='password' placeholder='Re-type Password' name='confirm_password' class='form-control' required>" +
+                            "</div>" +
                             "<div>" +
                                 "<input type='submit' class='btn bg-dark-blue text-light fw-bold' value='Send Registration Request'>" +
                             "</div>" +

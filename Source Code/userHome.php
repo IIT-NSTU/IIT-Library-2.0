@@ -4,6 +4,12 @@
     require_once('inc/functions.php');
 ?>
 
+<?php
+    if(!isset($_SESSION['user_id'])) {
+        header("location: index.php");
+    }
+?>
+
 <!-- Body Starts -->
     <body>
         <?php
@@ -11,9 +17,9 @@
         ?>
 
         <?php
-            if ($_SESSION['loggedIn'] == 1) {
+            if ($_SESSION['showMessage'] == 1) {
                 outputMessage("Successfully Logged In!!!", "Welcome to IIT Library");
-                $_SESSION['loggedIn'] = 0;
+                $_SESSION['showMessage'] = 0;
             }
         ?>
 

@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once('inc/header.php');
+    require_once ('inc/config.php');
     require_once('inc/functions.php');
 ?>
 
@@ -12,12 +13,47 @@
 
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $email = $_POST['email'];
-            $pass = $_POST['password'];
 
-            if ($email == 'prosantodeb7@gmail.com' && $pass=='12345') {
-                $_SESSION['loggedIn'] = 1;
-                header('location: userHome.php');
+            $username = $password = $type = "";
+
+            if (isset($_POST['username'])) {
+                $username = $_POST['username'];
+            }
+
+            if (isset($_POST['password'])) {
+                $password = $_POST['password'];
+            }
+
+            if (isset($_POST['typeRadio'])) {
+                $type = $_POST['typeRadio'];
+            }
+
+            global $conn;
+            $sql = "";
+            $location = "";
+
+            if ($type == "user") {
+                $sql = "SELECT user_id FROM `user` WHERE username = '$username' && password = '$password'";
+                $location = "userHome.php";
+            } else if ($type == "librarian") {
+                $sql = "SELECT librarian_id FROM `librarian` WHERE username = '$username' && password = '$password'";
+                $location = "librarianHome.php";
+            } else {
+                if ($username == "admin" && $password == "admin") {
+                    $_SESSION['showMessage'] = 1;
+                    $_SESSION['user_id'] = "admin";
+                    header('location: directorHome.php');
+                }
+            }
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $userID = $row['user_id'];
+                $_SESSION['user_id'] = $userID;
+                $_SESSION['showMessage'] = 1;
+                header("location: $location");
             } else {
                 outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
             }
@@ -44,16 +80,16 @@
                     <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3">Email address</label>
-                            <input name="email" type="email" id="form3Example3" class="form-control form-control-lg"
-                                   placeholder="Enter a valid email address" required/>
+                            <label class="form-label" >Username</label>
+                            <input name="username" type="text" class="form-control form-control-lg"
+                                   placeholder="Type your username" required/>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-3">
-                            <label class="form-label" for="form3Example4">Password</label>
-                            <input name="password" type="password" id="form3Example4" class="form-control form-control-lg"
-                                   placeholder="Enter password" required/>
+                            <label class="form-label" >Password</label>
+                            <input name="password" type="password" class="form-control form-control-lg"
+                                   placeholder="Type your password" required/>
                         </div>
 
 <!--                        <div class="d-flex justify-content-between align-items-center">-->
@@ -66,7 +102,38 @@
 <!--                            <a href="#!" class="text-body">Forgot password?</a>-->
 <!--                        </div>-->
 
-                        <div class="text-center text-lg-start mt-4 pt-2">
+                        <div class="pt-2">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="typeRadio" value="user" checked>
+                                            <label class="form-label">
+                                                User
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="typeRadio" value="librarian">
+                                            <label class="form-label">
+                                                Librarian
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="typeRadio" value="director">
+                                            <label class="form-label">
+                                                Director
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4">
                             <button name="loginButton" type="submit" class="btn bg-dark-blue btn-lg fw-bold text-light"
                                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                             <p class="fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.php" class="link-danger">Register</a></p>

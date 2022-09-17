@@ -19,7 +19,7 @@
                     <li class="nav-item"><a class="nav-link" href="userFine.php">Fine</a></li>
                     <li class="nav-item"><a class="nav-link" href="userNewBookRequest.php">New Book Request</a></li>
                     <li class="nav-item"><a class="nav-link" href="userProfile.php">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.php">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                 </ul>
             </div>
         </div>

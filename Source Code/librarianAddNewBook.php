@@ -1,5 +1,13 @@
 <?php
-    require_once("inc/header.php");
+    session_start();
+    require_once('inc/header.php');
+    require_once('inc/functions.php');
+?>
+
+<?php
+    if(!isset($_SESSION['user_id'])) {
+        header("location: index.php");
+    }
 ?>
 
     <!-- Body Starts -->

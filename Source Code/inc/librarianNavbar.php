@@ -21,7 +21,7 @@
                     <li class="nav-item"><a class="nav-link" href="librarianUsers.php">Users</a></li>
                     <li class="nav-item"><a class="nav-link" href="librarianFine.php">Fine</a></li>
                     <li class="nav-item"><a class="nav-link" href="librarianProfile.php">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.php">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ogout.php">Logout</a></li>
                 </ul>
             </div>
         </div>
