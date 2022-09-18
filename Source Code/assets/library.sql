@@ -47,7 +47,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`isbn`, `title`, `author`, `edition`, `date_of_publication`, `publisher`, `number_of_pages`, `price`, `source`, `image_field`, `electronic_copy_path`, `no_of_books`) VALUES
-(' 978111980036', 'Operating System Concepts', 'Abraham Silberschatz', 10, '02/09/2021', 'Wiley', 1040, 8384, 'Amazon', ' 9781119800361.jpg', ' 9781119800361.pdf', 0),
+('9781119800361', 'Operating System Concepts', 'Abraham Silberschatz', 10, '02/09/2021', 'Wiley', 1040, 8384, 'Amazon', ' 9781119800361.jpg', ' 9781119800361.pdf', 0),
 ('9780070141605', 'FUNDAMENTALS OF COMPUTERS', 'E Balagurusamy', 0, '', 'McGraw Hill', 495, 0, '', '9780070141605.jpg', '9780070141605.pdf', 0),
 ('9780070240353', 'Schaum\'s Outline of Programming with C 2nd Edition', 'Byron S. S. Gottfrie', 2, '06-22-1996', 'McGraw Hill', 552, 3500, 'Amazon', '9780070240353.jpeg', '9780070240353.pdf', 0),
 ('9780070701984', 'Data Structures With C', 'Seymour Lipschutz ', 0, '', '', 554, 0, '', '9780070701984.jpg', '9780070701984.pdf', 0),

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once('inc/header.php');
     require_once('inc/config.php');
     require_once('inc/functions.php');
@@ -36,87 +37,115 @@
                 $electronicCopy = "Not Available";
             }
 
-            echo "<div class='container mt-5 mb-5'> 
-                                <div class='row justify-content-center rounded-border-white-background'> 
-                                    <div class='col-md-5'> 
-                                        <div class='d-flex flex-column align-items-center text-center p-3 py-5'>
-                                            <img class='mt-5' src='assets/cover/{$row['image_field']}' style='max-height: 500px; max-width: 350px;'>
-                                            <span class='form-label mt-5'>Title : {$row['title']}</span>
-                                            <span class='form-label'>Author : {$row['author']}</span>
-                                        </div>
-                                    </div>
-                                    <div class='col-md-7'>
-                                        <div class='p-3 py-5'>
-                                            <div class='d-flex justify-content-center mb-5'>
-                                                <h4 class='form-label'>Other Information</h4>
-                                            </div>
-                                            <div class='row mt-2'>
-                                                <div class='col-md-6'>
-                                                    <label class='form-label'>Edition</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['edition']} $editionText' disabled>
-                                                </div>
-                                                <div class='col-md-6'>
-                                                    <label class='form-label'>No of Books</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['no_of_books']}' disabled>
-                                                </div>
-                                            </div>
-                                            <div class='row'>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>Date of Publication</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['date_of_publication']}' disabled>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>Publisher</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['publisher']}' disabled>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>Number of Pages</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['number_of_pages']} Pages' disabled>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>Price</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['price']} Tk' disabled>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>Source</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['source']}' disabled>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>ISBN</label>
-                                                    <input type='text' class='form-control' placeholder='{$row['isbn']}' disabled>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                    <label class='form-label'>Electronic Copy</label>";
+            ?>
 
-                                                if ($electronicCopy == "Available") {
-                                                    echo "<button type='button' class='form-control btn-success text-light fw-bold' onclick='openFile()'>Available</button>";
-                                                } else {
-                                                    echo "<input type='button' class='form-control btn-danger text-light fw-bold' id='$electronicCopy' value='Not Available'>";
-                                                }
-                                                echo " </div>                                                  
-                                                <div class='col-md-12 mt-3'>
-                                                     <label class='form-label'>Return Date</label>
-                                                     <input type='date' class='form-control' placeholder='Return Date' required>
-                                                </div>
-                                                <div class='col-md-12 mt-3'>
-                                                     <button type='submit' class='form-control btn-success text-light fw-bold'  onclick=student()>Borrow Book</button>
-                                                </div>
-                                            </div>                
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>";
+        <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $dueDate = $borrowID = "";
+
+                $borrowID = "B".rand(10000000000,20000000000);
+
+                if (isset($_POST['due_date'])) {
+                    $dueDate = $_POST['due_date'];
+                }
+
+                $sql2 = "SELECT accession FROM `accession_isbn` WHERE isbn = '$isbn' and borrowed = 'no'";
+                $result2 = $conn->query($sql2);
+                $row2 = $result2->fetch_assoc();
+
+                $sql3 = "INSERT INTO `borrow` (`borrow_id`, `user_id`, `accession_number`, `borrow_date`, `due_date`, `return_date`, `fine_amount`) VALUES 
+                                            ('$borrowID', '{$_SESSION['user_id']}', '{$row2['accession']}', '', '$dueDate', '', '0')";
+
+                if ($conn->query($sql3)) {
+                    outputMessage("Book Borrow Request Send Successfully!!!", "Please Collect The Book Within 72 Hours", "success");
+                } else {
+                    outputMessage("Invalid Data!!!", "Please Try again", "danger");
+                }
+
+                $sql4 = "UPDATE `accession_isbn` SET `borrowed` = 'maybe' WHERE `accession_isbn`.`accession` = '{$row2['accession']}'";
+                $conn->query($sql4);
+            }
         ?>
 
+            <div class="container mt-5 mb-5">
+                <div class="row justify-content-center rounded-border-white-background">
+                    <div class="col-md-5">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <img class="mt-5" src="assets/cover/<?php echo $row['image_field']; ?>" style="max-height: 500px; max-width: 350px;">
+                            <span class="form-label mt-5">Title : <?php echo $row['title']; ?></span>
+                            <span class="form-label">Author : <?php echo $row['author']; ?></span>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class='p-3 py-5'>
+                            <div class='d-flex justify-content-center mb-5'>
+                                <h4 class='form-label'>Other Information</h4>
+                            </div>
+                            <div class='row mt-2'>
+                                <div class='col-md-6'>
+                                    <label class='form-label'>Edition</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['edition'].$editionText; ?>' disabled>
+                                </div>
+                                <div class='col-md-6'>
+                                    <label class='form-label'>No of Books</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['no_of_books']; ?>' disabled>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>Date of Publication</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['date_of_publication']; ?>' disabled>
+                                </div>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>Publisher</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['publisher']; ?>' disabled>
+                                </div>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>Number of Pages</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['number_of_pages']; ?> Pages' disabled>
+                                </div>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>Price</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['price']; ?> Tk' disabled>
+                                </div>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>Source</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['source']; ?>' disabled>
+                                </div>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>ISBN</label>
+                                    <input type='text' class='form-control' placeholder='<?php echo $row['isbn']; ?>' disabled>
+                                </div>
+                                <div class='col-md-12 mt-3'>
+                                    <label class='form-label'>Electronic Copy</label>
+                                    <?php
+                                        if ($electronicCopy == "Available") {
+                                            echo "<button type='button' class='form-control btn-success text-light fw-bold' onclick='openFile()'>Available</button>";
+                                        } else {
+                                            echo "<input type='button' class='form-control btn-danger text-light fw-bold' id='$electronicCopy' value='Not Available'>";
+                                        }
+                                        ?>
+
+                                </div>
+                                <form action="<?php echo $_SERVER['PHP_SELF'].'?isbn='.$isbn; ?>" method="POST">
+                                    <div class='col-md-12 mt-3'>
+                                        <label class='form-label'>Due Date</label>
+                                        <input type='date' class='form-control' placeholder='Due Date' name='due_date' required>
+                                    </div>
+                                    <div class='col-md-12 mt-3'>
+                                        <button type='submit' class='form-control btn-success text-light fw-bold'>Borrow Book</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
     <script>
         function openFile() {
             window.open("assets/pdf/<?php echo $row['electronic_copy_path'];?>");
-        }
-
-        function setBorrowField() {
-
         }
     </script>
     <!-- </main> -->
