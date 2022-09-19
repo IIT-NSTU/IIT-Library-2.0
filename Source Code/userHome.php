@@ -100,7 +100,7 @@
         $total_records = $result->num_rows;
         $total_pages = ceil($total_records / $limit);
 
-        echo "<ul class='mb-5 justify-content-center pagination bg-light'>";
+        echo "<ul class='mb-2 justify-content-center pagination bg-light'>";
         if($page > 1) {
             echo '<li class="page-item">
                                 <a class="page-link" href="userHome.php?page='.($page - 1).'">Previous</a> 
@@ -130,6 +130,12 @@
 
     </body>
 <!-- Body Ends -->
+
+    <section class="goTopButton">
+        <a href="#">
+            <img src="res/top.png" alt="top" width="50px">
+        </a>
+    </section>
 
 <?php
     require_once('inc/footer.php');

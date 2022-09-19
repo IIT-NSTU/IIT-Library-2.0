@@ -255,10 +255,10 @@
                             "<div  class='form-group mb-3'>" +
                                 "<label class='form-label' for='rank'>Select Degisnation<sup>*</sup></label>" +
                                 "<select name='teacher_designation' class='form-control'>" +
-                                    "<option value='lecturar'>Lecturar</option>" +
-                                    "<option value='assistantprofessor'>Assistant Professor</option>" +
-                                    "<option value='associateprofessor'>Associate Professor</option>" +
-                                    "<option value='professor'>Professor</option>" +
+                                    "<option value='Lecturer'>Lecturer</option>" +
+                                    "<option value='Assistant Professor'>Assistant Professor</option>" +
+                                    "<option value='Associate Professor'>Associate Professor</option>" +
+                                    "<option value='Professor'>Professor</option>" +
                                 "</select>" +
                             " </div>" +
                         "</div>";
@@ -280,8 +280,8 @@
                             "</div>" +
                             "<div  class='form-group mb-3'>" +
                                 "<label class='form-label' for='rank'>Select Degisnation<sup>*</sup></label>" +
-                                "<select name='officer_degisnation' class='form-control'>" +
-                                    "<option value='sectionOfficer'>Section Officer</option>" +
+                                "<select name='officer_designation' class='form-control'>" +
+                                    "<option value='Section Officer'>Section Officer</option>" +
                                 "</select>" +
                             "</div>" +
                         "</div>";
@@ -303,9 +303,9 @@
                             "</div>" +
                             "<div  class='form-group mb-3'>" +
                                 "<label class='form-label' for='rank'>Select Degisnation<sup>*</sup></label>" +
-                                "<select name='staff_degisnation' class='form-control'>" +
-                                    "<option value='officeAssistant'>Office Assistant</option>" +
-                                    "<option value='labAssistant'>Lab Assistant</option>" +
+                                "<select name='staff_designation' class='form-control'>" +
+                                    "<option value='Office Assistant'>Office Assistant</option>" +
+                                    "<option value='Lab Assistant'>Lab Assistant</option>" +
                                 "</select>" +
                             "</div>" +
                         "</div>";
@@ -336,6 +336,12 @@
             </script>
 </body>
 <!-- Body Ends -->
+
+    <section class="goTopButton">
+        <a href="#">
+            <img src="res/top.png" alt="top" width="50px">
+        </a>
+    </section>
 
 <?php
     require_once('inc/footer.php');

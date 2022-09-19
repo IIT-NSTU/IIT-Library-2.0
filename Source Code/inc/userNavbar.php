@@ -1,7 +1,7 @@
 <!-- Navigation Bar Starts -->
     <nav class="navbar navbar-expand-lg sticky-top bg-dark-blue">
         <div class="container">
-            <a href="directorHome.php">
+            <a href="userHome.php">
                 <img src="res/favicon.png"" width="50px" alt="Book Icon">
             </a>
             <span class="navbar-brand mr-2">

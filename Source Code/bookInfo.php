@@ -100,6 +100,11 @@
         <!-- </main> -->
     </body>
 <!-- Body Ends -->
+    <section class="goTopButton">
+        <a href="#">
+            <img src="res/top.png" alt="top" width="50px">
+        </a>
+    </section>
 
 <?php
     require_once ('inc/footer.php');

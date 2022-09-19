@@ -125,3 +125,8 @@ table {
     background-color: white;
 }
 
+.goTopButton{
+    margin-right: 50px;
+    margin-bottom: 30px;
+    margin-left: auto;
+}
