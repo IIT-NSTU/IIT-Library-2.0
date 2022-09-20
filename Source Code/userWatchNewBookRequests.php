@@ -22,14 +22,13 @@
             <div class="container mt-5 mb-5">
                 <table class="table table-bordered table-hover text-center">
                     <tr>
-                        <td colspan="10">
+                        <td colspan="9">
                             <h2 class="text-center fw-bold">My Book Requests</h2>
                         </td>
                     </tr>
                     <tr>
                         <th>No</th>
                         <th>Request ID</th>
-                        <th>User ID</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Edition</th>
@@ -52,9 +51,6 @@
                             </td>
                             <td>
                                 <?php echo $row['request_id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['user_id']; ?>
                             </td>
                             <td>
                                 <?php echo $row['title']; ?>

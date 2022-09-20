@@ -41,23 +41,20 @@
 
         <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $dueDate = $borrowID = "";
+                $bookingID = "";
 
-                $borrowID = "B".rand(10000000000,20000000000);
-
-                if (isset($_POST['due_date'])) {
-                    $dueDate = $_POST['due_date'];
-                }
+                $bookingID = "B".rand(10000000000,20000000000);
+                $date = date("Y-m-d H:i:s", strtotime('+4 hours'));
 
                 $sql2 = "SELECT accession FROM `accession_isbn` WHERE isbn = '$isbn' and borrowed = 'no'";
                 $result2 = $conn->query($sql2);
                 $row2 = $result2->fetch_assoc();
 
-                $sql3 = "INSERT INTO `borrow` (`borrow_id`, `user_id`, `accession_number`, `borrow_date`, `due_date`, `return_date`, `fine_amount`) VALUES 
-                                            ('$borrowID', '{$_SESSION['user_id']}', '{$row2['accession']}', '', '$dueDate', '', '0')";
+                $sql3 = "INSERT INTO `booking` (`booking_id`, `user_id`, `accession_number`, `date`) VALUES 
+                                            ('$bookingID', '{$_SESSION['user_id']}', '{$row2['accession']}', '$date')";
 
                 if ($conn->query($sql3)) {
-                    outputMessage("Book Borrow Request Send Successfully!!!", "Please Collect The Book Within 72 Hours", "success");
+                    outputMessage("Booking Completed Successfully!!!", "Please Collect The Book Within 72 Hours", "success");
                 } else {
                     outputMessage("Invalid Data!!!", "Please Try again", "danger");
                 }
@@ -129,11 +126,7 @@
                                 </div>
                                 <form action="<?php echo $_SERVER['PHP_SELF'].'?isbn='.$isbn; ?>" method="POST">
                                     <div class='col-md-12 mt-3'>
-                                        <label class='form-label'>Due Date</label>
-                                        <input type='date' class='form-control' placeholder='Due Date' name='due_date' required>
-                                    </div>
-                                    <div class='col-md-12 mt-3'>
-                                        <button type='submit' class='form-control btn-success text-light fw-bold'>Borrow Book</button>
+                                        <button type='submit' class='form-control btn-secondary text-light fw-bold'>Make a Booking for this book</button>
                                     </div>
                                 </form>
                             </div>

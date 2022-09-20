@@ -24,6 +24,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="librarianNewBookRequests.php">New Book Requests</a></li>
+                                    <li><a class="dropdown-item" href="librarianUserBooking.php">Bookings</a></li>
                                 </ul>
                             </li>
                         </ul>
