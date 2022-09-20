@@ -38,7 +38,7 @@
                 $conn->query("DELETE FROM `booking` WHERE `booking_id` = '{$_POST['give_book']}'");
                 $borrowDate = date("Y-m-d H:i:s", strtotime('+4 hours'));
                 $dueDate = date("Y-m-d H:i:s", strtotime('+172 hours'));
-                $conn->query("INSERT INTO `borrow` (`borrow_id`, `user_id`, `accession_number`, `borrow_date`, `due_date`, `return_date`) VALUES ('{$_POST['give_book']}', '{$row2['user_id']}', '{$row2['accession_number']}', '$borrowDate', '$dueDate', ''");
+                $conn->query("INSERT INTO `borrow` (`borrow_id`, `user_id`, `accession_number`, `borrow_date`, `due_date`, `return_date`, `fine`, `borrowed_times`) VALUES ('{$_POST['give_book']}', '{$row2['user_id']}', '{$row2['accession_number']}', '$borrowDate', '$dueDate', '', '', '0')");
                 outputMessage("Booking is converted to borrow successfully!!!", "", "success");
             }
         ?>

@@ -80,7 +80,7 @@
                                     $dateNow = date("Y-m-d H:i:s");
                                     $bookingValid = date("Y-m-d H:i:s", strtotime($row['due_date']));
 
-                                    if ($dateNow < $bookingValid && $row['borrowed_times'] < 3) {
+                                    if ($dateNow < $bookingValid && $row['borrowed_times'] < 3 && $row['return_date'] == "") {
                                         echo "<form action='{$_SERVER['PHP_SELF']}' method='POST'>
                                                         <button class='btn btn-success fw-bold' type='submit' name='extend_borrow' value='{$row['borrow_id']}'>Extend Time</button>
                                               </form>";

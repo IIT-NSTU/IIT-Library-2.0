@@ -24,7 +24,11 @@
                 $date = date("Y-m-d H:i:s");
                 $conn->query("UPDATE `borrow` SET `return_date` = '$date' WHERE `borrow`.`borrow_id` = '{$_POST['return_book']}'");
                 $conn->query("UPDATE `borrow` SET `fine` = 'Paid' WHERE `borrow`.`borrow_id` = '{$_POST['return_book']}'");
-                outputMessage("Borrow period extended successfully!!!", "", "success");
+
+                $result2 = $conn->query("SELECT * FROM `borrow` WHERE `borrow_id` = '{$_POST['return_book']}'");
+                $row2 = $result2->fetch_assoc();
+                $conn->query("UPDATE `accession_isbn` SET `borrowed` = 'no' WHERE `accession_isbn`.`accession` = '{$row2['accession_number']}'");
+                outputMessage("Book received successfully!!!", "", "success");
             }
         ?>
 
