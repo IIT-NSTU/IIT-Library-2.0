@@ -19,7 +19,7 @@
 
         <?php
             if($_SERVER['REQUEST_METHOD'] == "POST") {
-                $requestID = $userID = $title = $author = $edition = $publisher = $source = $coverPage = $isbn = "";
+                $requestID = $userID = $title = $author = $edition = $publisher = $source = $isbn = "";
 
                 if (isset($_POST['title'])) {
                     $title = $_POST['title'];
@@ -53,13 +53,14 @@
                 $userID = $_SESSION['user_id'];
 
                 global $conn;
-                $sql = "INSERT INTO `requested_books` (`request_id`, `user_id`, `title`, `author`, `edition`, `publisher`, `source`, `image_field`, `isbn`) VALUES
-                        ('$requestID', '$userID', '$title', '$author', $edition, '$publisher', '$source', '$coverPage', '$isbn');";
+                $sql = "INSERT INTO `requested_books` (`request_id`, `user_id`, `title`, `author`, `edition`, `publisher`, `source`, `isbn`, `status`) VALUES
+                        ('$requestID', '$userID', '$title', '$author', $edition, '$publisher', '$source', '$isbn', 'new');";
 
-                if ($conn->query($sql)) {
+                try {
+                    $conn->query($sql);
                     outputMessage("Book Request Sent Successfully!!!", "Wait For the Confirmation!", "success");
-                } else {
-                    outputMessage("Invalid Registration Data!!!", "Please Try again", "danger");
+                } catch (Exception $e) {
+                    outputMessage("Something Went Wrong!!!", "Please Try Again!", "danger");
                 }
             }
         ?>
@@ -91,11 +92,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="form-label" for="book source">Book Source</label>
-                                    <input type="text" placeholder="Type from where the book is bought" class="form-control" name="source">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-label" for="book cover page">Book Cover Page</label>
-                                    <input type="file" placeholder="Insert Image" class="form-control" name="coverPage">
+                                    <input type="text" placeholder="Type from where the book can be bought" class="form-control" name="source">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="form-label" for="isbn">ISBN</label>

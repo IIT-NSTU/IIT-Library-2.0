@@ -16,8 +16,18 @@
                 <ul class="navbar-nav" style="margin-left: auto;">
                     <li class="nav-item"><a class="nav-link" href="librarianHome.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="librarianAddNewBook.php">Add New Book</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#checkBorrowReceiptModal">Check Borrow Receipt</a></li>
-                    <li class="nav-item"><a class="nav-link" href="newBookRequests.php">New Book Requests</a></li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                                    Watch
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="librarianNewBookRequests.php">New Book Requests</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     <li class="nav-item"><a class="nav-link" href="librarianUsers.php">Users</a></li>
                     <li class="nav-item"><a class="nav-link" href="librarianFine.php">Fine</a></li>
                     <li class="nav-item"><a class="nav-link" href="librarianProfile.php">Profile</a></li>

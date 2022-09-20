@@ -33,7 +33,7 @@
             $location = "";
 
             if ($type == "user") {
-                $sql = "SELECT user_id FROM `user` WHERE username = '$username' && password = '$password'";
+                $sql = "SELECT user_id FROM `user` WHERE username = '$username' && password = '$password' && status = 'approved'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows == 1) {
@@ -61,6 +61,8 @@
                     $_SESSION['showMessage'] = 1;
                     $_SESSION['adminSession'] = "admin";
                     header('location: directorHome.php');
+                } else {
+                    outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
                 }
             }
 

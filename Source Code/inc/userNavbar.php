@@ -18,6 +18,18 @@
                     <li class="nav-item"><a class="nav-link" href="userBorrowBooks.php">Borrow Books</a></li>
                     <li class="nav-item"><a class="nav-link" href="userFine.php">Fine</a></li>
                     <li class="nav-item"><a class="nav-link" href="userNewBookRequest.php">New Book Request</a></li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                                    Watch
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="userWatchNewBookRequests.php">My Book Requests</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     <li class="nav-item"><a class="nav-link" href="userProfile.php">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                 </ul>

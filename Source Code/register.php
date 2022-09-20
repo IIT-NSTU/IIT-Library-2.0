@@ -114,10 +114,11 @@
             $sql = "INSERT INTO `user` (`user_id`, `name`, `father_name`, `mother_name`, `date_of_birth`, `present_address`, `pr_post_code`, `permanent_address`, `pa_post_code`, `mobile_number`, `email_address`, `roll_number`, `session`, `designation`, `pin`, `username`, `password`, `status`) VALUES
             ('$userId', '$name', '$father_name', '$mother_name', '$date_of_birth', '$present_address', '$present_address_post_code', '$permanent_address', '$permanent_address_post_code', '$phone', '$email', '$roll', '$session', '$designation', '$pin', '$userName', '$password', '$status')";
 
-            if ($conn->query($sql)) {
+            try {
+                $conn->query($sql);
                 outputMessage("Registration Data Sent Successfully!!!", "Wait For the Confirmation!", "success");
-            } else {
-                outputMessage("Invalid Registration Data!!!", "Please Try again", "danger");
+            } catch (Exception $e) {
+                outputMessage("Invalid Registration Data!!!", "Please Try Again!", "danger");
             }
 
         }
