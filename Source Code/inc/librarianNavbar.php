@@ -23,8 +23,9 @@
                                     Watch
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="librarianNewBookRequests.php">New Book Requests</a></li>
                                     <li><a class="dropdown-item" href="librarianUserBooking.php">User Bookings</a></li>
+                                    <li><a class="dropdown-item" href="librarianNewBookRequests.php">User Book Requests</a></li>
+                                    <li><a class="dropdown-item" href="librarianUserBorrowedBooks.php">User Borrowed Books</a></li>
                                 </ul>
                             </li>
                         </ul>

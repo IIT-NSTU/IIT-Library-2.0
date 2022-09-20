@@ -15,8 +15,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav" style="margin-left: auto;">
                     <li class="nav-item"><a class="nav-link" href="userHome.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="userBorrowBooks.php">Borrow Books</a></li>
-                    <li class="nav-item"><a class="nav-link" href="userFine.php">Fine</a></li>
                     <li class="nav-item"><a class="nav-link" href="userNewBookRequest.php">New Book Request</a></li>
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
@@ -26,7 +24,8 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="userBookings.php">My Bookings</a></li>
-                                    <li><a class="dropdown-item" href="userWatchNewBookRequests.php">New Book Requests</a></li>
+                                    <li><a class="dropdown-item" href="userWatchNewBookRequests.php">My Book Requests</a></li>
+                                    <li><a class="dropdown-item" href="userBorrowedBooks.php">My Borrowed Books</a></li>
                                 </ul>
                             </li>
                         </ul>
