@@ -29,6 +29,18 @@
                 $conn->query("DELETE FROM `booking` WHERE `booking_id` = '{$_POST['cancel_booking']}'");
                 outputMessage("Booking is canceled successfully!!!", "", "success");
             }
+
+            if(isset($_POST['give_book'])) {
+                $result2 = $conn->query("SELECT * FROM `booking` WHERE `booking_id` = '{$_POST['give_book']}'");
+                $row2 = $result2->fetch_assoc();
+                $conn->query("UPDATE `accession_isbn` SET `borrowed` = 'yes' WHERE `accession_isbn`.`accession` = '{$row2['accession_number']}'");
+
+                $conn->query("DELETE FROM `booking` WHERE `booking_id` = '{$_POST['give_book']}'");
+                $borrowDate = date("Y-m-d H:i:s", strtotime('+4 hours'));
+                $dueDate = date("Y-m-d H:i:s", strtotime('+172 hours'));
+                $conn->query("INSERT INTO `borrow` (`borrow_id`, `user_id`, `accession_number`, `borrow_date`, `due_date`, `return_date`, `fine_amount`) VALUES ('{$_POST['give_book']}', '{$row2['user_id']}', '{$row2['accession_number']}', '$borrowDate', '$dueDate', '', 0)");
+                outputMessage("Booking is converted to borrow successfully!!!", "", "success");
+            }
         ?>
 
         <!-- <main> -->
@@ -36,7 +48,7 @@
                 <table class="table table-bordered table-hover text-center">
                     <tr>
                         <td colspan="7">
-                            <h2 class="text-center fw-bold">My Bookings</h2>
+                            <h2 class="text-center fw-bold">User Bookings</h2>
                         </td>
                     </tr>
                     <tr>
@@ -88,7 +100,9 @@
                                                     <button class='btn btn-danger fw-bold' type='submit' name='cancel_booking' value='{$row['booking_id']}'>Cancel Booking</button>
                                                 </form>";
                                     } else {
-                                        echo "<button class='btn btn-success fw-bold'>Still Valid</button>";
+                                        echo "<form action='{$_SERVER['PHP_SELF']}' method='POST'>
+                                                    <button class='btn btn-success fw-bold' type='submit' name='give_book' value='{$row['booking_id']}'>Give Book</button>
+                                                </form>";
                                     }
 
                                 ?>

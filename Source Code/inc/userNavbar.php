@@ -25,7 +25,7 @@
                                     Watch
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="userBookings.php">Bookings</a></li>
+                                    <li><a class="dropdown-item" href="userBookings.php">My Bookings</a></li>
                                     <li><a class="dropdown-item" href="userWatchNewBookRequests.php">New Book Requests</a></li>
                                 </ul>
                             </li>
