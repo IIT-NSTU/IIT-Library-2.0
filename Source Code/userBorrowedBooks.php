@@ -82,7 +82,7 @@
 
                                     if ($dateNow < $bookingValid && $row['borrowed_times'] < 3 && $row['return_date'] == "") {
                                         echo "<form action='{$_SERVER['PHP_SELF']}' method='POST'>
-                                                        <button class='btn btn-success fw-bold' type='submit' name='extend_borrow' value='{$row['borrow_id']}'>Extend Time</button>
+                                                        <button class='btn btn-success fw-bold' type='submit' name='extend_borrow' value='{$row['borrow_id']}'>Extend 7 Days</button>
                                               </form>";
                                     }
                                 ?>

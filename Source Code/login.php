@@ -9,65 +9,60 @@
     <body style="background-image: url('res/background2.jpg')">
         <?php
             require_once ('inc/navbar.php');
+            $username_err = $password_err = "";
+            extract($_POST);
         ?>
 
         <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if (isset($_POST['loginButton'])){
 
-            $username = $password = $type = "";
-
-            if (isset($_POST['username'])) {
-                $username = $_POST['username'];
+            if (!$username) {
+                $username_err = "Username Required";
             }
 
-            if (isset($_POST['password'])) {
-                $password = $_POST['password'];
-            }
-
-            if (isset($_POST['typeRadio'])) {
-                $type = $_POST['typeRadio'];
+            if (!$password) {
+                $password_err = "Password Required";
             }
 
             global $conn;
             $sql = "";
             $location = "";
 
-            if ($type == "user") {
-                $sql = "SELECT user_id FROM `user` WHERE username = '$username' && password = '$password' && status = 'approved'";
-                $result = $conn->query($sql);
+            if($username && $password && $typeRadio) {
+                if ($typeRadio == "user") {
+                    $sql = "SELECT user_id FROM `user` WHERE username = '$username' && password = '$password' && status = 'approved'";
+                    $result = $conn->query($sql);
 
-                if ($result->num_rows == 1) {
-                    $row = $result->fetch_assoc();
-                    $_SESSION['user_id'] = $row['user_id'];
-                    $_SESSION['showMessage'] = 1;
-                    header("location: userHome.php");
-                } else {
-                    outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
-                }
-            } else if ($type == "librarian") {
-                $sql = "SELECT librarian_id FROM `librarian` WHERE username = '$username' && password = '$password'";
-                $result = $conn->query($sql);
+                    if ($result->num_rows == 1) {
+                        $row = $result->fetch_assoc();
+                        $_SESSION['user_id'] = $row['user_id'];
+                        $_SESSION['showMessage'] = 1;
+                        header("location: userHome.php");
+                    } else {
+                        outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                    }
+                } else if ($typeRadio == "librarian") {
+                    $sql = "SELECT librarian_id FROM `librarian` WHERE username = '$username' && password = '$password'";
+                    $result = $conn->query($sql);
 
-                if ($result->num_rows == 1) {
-                    $row = $result->fetch_assoc();
-                    $_SESSION['librarian_id'] = $row['librarian_id'];
-                    $_SESSION['showMessage'] = 1;
-                    header("location: librarianHome.php");
+                    if ($result->num_rows == 1) {
+                        $row = $result->fetch_assoc();
+                        $_SESSION['librarian_id'] = $row['librarian_id'];
+                        $_SESSION['showMessage'] = 1;
+                        header("location: librarianHome.php");
+                    } else {
+                        outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                    }
                 } else {
-                    outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
-                }
-            } else {
-                if ($username == "admin" && $password == "admin") {
-                    $_SESSION['showMessage'] = 1;
-                    $_SESSION['adminSession'] = "admin";
-                    header('location: directorHome.php');
-                } else {
-                    outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                    if ($username == "admin" && $password == "admin") {
+                        $_SESSION['showMessage'] = 1;
+                        $_SESSION['adminSession'] = "admin";
+                        header('location: directorHome.php');
+                    } else {
+                        outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                    }
                 }
             }
-
-
-
         }
         ?>
 
@@ -93,14 +88,16 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" >Username</label>
                             <input name="username" type="text" class="form-control form-control-lg"
-                                   placeholder="Type your username" required/>
+                                   placeholder="Type your username" value="<?php if ($username != 'root') echo $username;?>"/>
+                            <span class="warning"><?php echo $username_err; ?></span>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-3">
                             <label class="form-label" >Password</label>
                             <input name="password" type="password" class="form-control form-control-lg"
-                                   placeholder="Type your password" required/>
+                                   placeholder="Type your password" value="<?php echo $password;?>"/>
+                            <span class="warning"><?php echo $password_err; ?></span>
                         </div>
 
 <!--                        <div class="d-flex justify-content-between align-items-center">-->

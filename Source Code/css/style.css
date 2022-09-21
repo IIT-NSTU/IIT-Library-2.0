@@ -134,3 +134,8 @@ table {
 td{
     word-wrap: break-word;
 }
+
+.warning{
+    color: red;
+    font-weight: bold;
+}
