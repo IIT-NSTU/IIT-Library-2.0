@@ -46,21 +46,28 @@
                 $bookingID = "B".rand(10000000000,20000000000);
                 $date = date("Y-m-d H:i:s", strtotime('+4 hours'));
 
-                $sql2 = "SELECT accession FROM `accession_isbn` WHERE isbn = '$isbn' and borrowed = 'no'";
-                $result2 = $conn->query($sql2);
-                $row2 = $result2->fetch_assoc();
-
-                $sql3 = "INSERT INTO `booking` (`booking_id`, `user_id`, `accession_number`, `date`) VALUES 
-                                            ('$bookingID', '{$_SESSION['user_id']}', '{$row2['accession']}', '$date')";
-
-                if ($conn->query($sql3)) {
-                    outputMessage("Booking Completed Successfully!!!", "Please Collect The Book Within 72 Hours", "success");
-                } else {
-                    outputMessage("Invalid Data!!!", "Please Try again", "danger");
+                try {
+                    $sql2 = "SELECT accession FROM `accession_isbn` WHERE isbn = '$isbn' and borrowed = 'no'";
+                    $result2 = $conn->query($sql2);
+                    $row2 = $result2->fetch_assoc();
+                } catch (Exception $e) {
+                    outputMessage("Book is not available!!!", "Please Try again", "danger");
                 }
 
-                $sql4 = "UPDATE `accession_isbn` SET `borrowed` = 'maybe' WHERE `accession_isbn`.`accession` = '{$row2['accession']}'";
-                $conn->query($sql4);
+                try {
+                    $sql3 = "INSERT INTO `booking` (`booking_id`, `user_id`, `accession_number`, `date`) VALUES 
+                                            ('$bookingID', '{$_SESSION['user_id']}', '{$row2['accession']}', '$date')";
+                    $conn->query($sql3);
+                } catch (Exception $e) {
+                    outputMessage("Book is not available!!!", "Please Try again", "danger");
+                }
+                try {
+                    $sql4 = "UPDATE `accession_isbn` SET `borrowed` = 'maybe' WHERE `accession_isbn`.`accession` = '{$row2['accession']}'";
+                    $conn->query($sql4);
+                    outputMessage("Booking Completed Successfully!!!", "Please Collect The Book Within 72 Hours", "success");
+                } catch (Exception $e) {
+                    outputMessage("Book is not available!!!", "Please Try again", "danger");
+                }
             }
         ?>
 
@@ -122,7 +129,7 @@
                                             echo "<input type='button' class='form-control btn-danger text-light fw-bold' id='$electronicCopy' value='Not Available'>";
                                         }
                                         ?>
-
+                                    <span class='form-text'>Credit: Library Genesis</span>
                                 </div>
                                 <form action="<?php echo $_SERVER['PHP_SELF'].'?isbn='.$isbn; ?>" method="POST">
                                     <div class='col-md-12 mt-3'>

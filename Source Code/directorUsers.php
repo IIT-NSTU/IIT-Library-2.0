@@ -19,10 +19,19 @@
 
         <?php
             global $conn;
+
             if(isset($_POST['approve'])) {
                 if($conn->query("UPDATE `user` SET `status` = 'approved' WHERE `user`.`user_id` = '{$_POST['approve']}'")){
                     outputMessage("User is approved Successfully!!!", "", "success");
                 }
+
+                $result2 = $conn->query("SELECT * FROM `user` WHERE `user`.`user_id` = '{$_POST['approve']}'");
+                $row2 = $result2->fetch_assoc();
+                $email = $row2['email_address'];
+                $name = $row2['name'];
+
+                sendMail($email, "Registration Confirmed", "Hii! $name, Welcome to IIT Library. Your registration request is confirmed");
+
             }
 
             if(isset($_POST['recheck'])) {
@@ -35,6 +44,14 @@
                 if($conn->query("DELETE FROM `user` WHERE `user`.`user_id` = '{$_POST['remove_request']}'")){
                     outputMessage("User request is rejected!!!", "", "danger");
                 }
+
+                $result2 = $conn->query("SELECT * FROM `user` WHERE `user`.`user_id` = '{$_POST['approve']}'");
+                $row2 = $result2->fetch_assoc();
+                $email = $row2['email_address'];
+                $name = $row2['name'];
+
+                sendMail($email, "Registration Rejected", "Hii! $name, Unfortunately Your registration request is rejected.");
+
             }
         ?>
 

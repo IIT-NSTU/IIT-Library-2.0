@@ -88,6 +88,7 @@
                                     <div class='col-md-12 mt-3'>
                                         <label class='form-label'>Electronic Copy</label>
                                         <input type='text' class='form-control' placeholder='$electronicCopy' disabled>
+                                        <span class='form-text'>Credit: Library Genesis</span>
                                     </div>
                                 </div>                
                             </div>

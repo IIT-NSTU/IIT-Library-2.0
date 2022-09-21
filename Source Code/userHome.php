@@ -53,7 +53,7 @@
                 <?php
                 if (isset($_POST['userInput'])) {
                     $searchItem = $_POST['userInput'];
-                    $sql = "SELECT * FROM book WHERE book.title LIKE '%{$searchItem}%' LIMIT $startFrom, $limit";
+                    $sql = "SELECT * FROM `book` WHERE book.title LIKE '%{$searchItem}%' OR book.author LIKE '%{$searchItem}%' OR book.isbn LIKE '%{$searchItem}%' LIMIT $startFrom, $limit";
                 } else {
                     $sql = "SELECT * FROM `book` LIMIT $startFrom, $limit";
                 }

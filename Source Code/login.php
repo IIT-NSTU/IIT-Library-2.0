@@ -39,7 +39,7 @@
                         $_SESSION['showMessage'] = 1;
                         header("location: userHome.php");
                     } else {
-                        outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                        outputMessage("Error!!!", "Please Give Correct Information.", "danger");
                     }
                 } else if ($typeRadio == "librarian") {
                     $sql = "SELECT librarian_id FROM `librarian` WHERE username = '$username' && password = '$password'";
@@ -51,7 +51,7 @@
                         $_SESSION['showMessage'] = 1;
                         header("location: librarianHome.php");
                     } else {
-                        outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                        outputMessage("Error!!!", "Please Give Correct Information.", "danger");
                     }
                 } else {
                     if ($username == "admin" && $password == "admin") {
@@ -59,7 +59,7 @@
                         $_SESSION['adminSession'] = "admin";
                         header('location: directorHome.php');
                     } else {
-                        outputMessage("Warning!!!", "Please Give Correct Information.", "danger");
+                        outputMessage("Error!!!", "Please Give Correct Information.", "danger");
                     }
                 }
             }

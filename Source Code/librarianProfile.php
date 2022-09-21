@@ -18,14 +18,6 @@
     ?>
 
     <?php
-        $librarianID = $_SESSION['librarian_id'];
-        global $conn;
-        $sql = "SELECT * FROM `librarian` where librarian_id = '{$librarianID}'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-    ?>
-
-    <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = $password = "";
 
@@ -53,14 +45,23 @@
                 $password = $_POST['password'];
             }
 
+            global $conn;
+            $librarianID = $_SESSION['librarian_id'];
             $conn->query("UPDATE `librarian` SET `present_address` = '{$present_address}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `pr_post_code` = '{$present_address_post_code}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `permanent_address` = '{$permanent_address}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `pa_post_code` = '{$permanent_address_post_code}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `mobile_number` = '{$phone}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
             $conn->query("UPDATE `librarian` SET `password` = '{$password}' WHERE `librarian`.`librarian_id` = '{$librarianID}'");
-            outputMessage("Data Updated Successfully!!!", "Please Refresh the Page!", "success");
+            outputMessage("Data Updated Successfully!!!", "", "success");
         }
+    ?>
+
+    <?php
+        $librarianID = $_SESSION['librarian_id'];
+        $sql = "SELECT * FROM `librarian` where librarian_id = '{$librarianID}'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
     ?>
 
         <!-- <main> -->

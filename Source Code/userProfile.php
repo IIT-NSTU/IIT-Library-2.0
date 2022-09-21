@@ -18,14 +18,6 @@
         ?>
 
         <?php
-            $userID = $_SESSION['user_id'];
-            global $conn;
-            $sql = "SELECT * FROM `user` where user_id = '{$userID}'";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-        ?>
-
-        <?php
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $father_name = $mother_name = $present_address = $present_address_post_code = $permanent_address = $permanent_address_post_code = $phone = $password = "";
 
@@ -60,7 +52,8 @@
                 if (isset($_POST['password'])) {
                     $password = $_POST['password'];
                 }
-
+                $userID = $_SESSION['user_id'];
+                global $conn;
                 $conn->query("UPDATE `user` SET `father_name` = '{$father_name}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `mother_name` = '{$mother_name}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `present_address` = '{$present_address}' WHERE `user`.`user_id` = '{$userID}'");
@@ -69,8 +62,16 @@
                 $conn->query("UPDATE `user` SET `pa_post_code` = '{$permanent_address_post_code}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `mobile_number` = '{$phone}' WHERE `user`.`user_id` = '{$userID}'");
                 $conn->query("UPDATE `user` SET `password` = '{$password}' WHERE `user`.`user_id` = '{$userID}'");
-                outputMessage("Data Updated Successfully!!!", "Please Refresh the Page!", "success");
+                outputMessage("Data Updated Successfully!!!", "", "success");
             }
+        ?>
+
+        <?php
+            $userID = $_SESSION['user_id'];
+            global $conn;
+            $sql = "SELECT * FROM `user` where user_id = '{$userID}'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
         ?>
 
         <!-- <main> -->

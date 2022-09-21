@@ -23,12 +23,26 @@
                 if($conn->query("UPDATE `user` SET `status` = 'recommended' WHERE `user`.`user_id` = '{$_POST['recommend']}'")){
                     outputMessage("User is recommended for approval!!!", "", "success");
                 }
+
+                $result2 = $conn->query("SELECT * FROM `user` WHERE `user`.`user_id` = '{$_POST['recommend']}'");
+                $row2 = $result2->fetch_assoc();
+                $email = $row2['email_address'];
+                $name = $row2['name'];
+
+                sendMail($email, "Registration Recommended", "Hii! $name, Your registration request is forwarded to the Director, IIT NSTU.");
             }
 
             if(isset($_POST['remove_request'])) {
                 if($conn->query("DELETE FROM `user` WHERE `user`.`user_id` = '{$_POST['remove_request']}'")){
                     outputMessage("User request is rejected!!!", "", "danger");
                 }
+
+                $result2 = $conn->query("SELECT * FROM `user` WHERE `user`.`user_id` = '{$_POST['remove_request']}'");
+                $row2 = $result2->fetch_assoc();
+                $email = $row2['email_address'];
+                $name = $row2['name'];
+
+                sendMail($email, "Registration Rejected", "Hii! $name, Unfortunately Your registration request is rejected.");
             }
         ?>
 
