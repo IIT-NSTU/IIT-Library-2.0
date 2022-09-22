@@ -73,6 +73,7 @@
                                         <img class='rounded-circle mt-5' width='150px' src='res/profile.png'>
                                         <span class='form-label mt-5'>Username : {$row['username']}</span>
                                         <span class='form-label'>Email : {$row['email_address']}</span>
+                                        <span class='form-label'>Librarian ID : {$row['librarian_id']}</span>
                                     </div>
                                 </div>
                                 <div class='col-md-7'>

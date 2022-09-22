@@ -30,13 +30,20 @@
                 $conn->query("UPDATE `accession_isbn` SET `borrowed` = 'no' WHERE `accession_isbn`.`accession` = '{$row2['accession_number']}'");
                 outputMessage("Book received successfully!!!", "", "success");
             }
+
+            if (isset($_POST['sendMail'])) {
+                $result3 = $conn->query("SELECT user.email_address FROM user WHERE user_id = (SELECT user_id FROM `borrow` WHERE borrow_id = 'B13761643252')");
+                $row3 = $result3->fetch_assoc();
+                sendMail($row3['email_address'], "Please Return The Book", "Sir! Your due is has crossed the limit. Please Return the Book");
+                outputMessage("Mail Sent successfully!!!", "", "success");
+            }
         ?>
 
         <!-- <main> -->
             <div class="container mt-5 mb-5">
                 <table class="table table-bordered table-hover text-center">
                     <tr>
-                        <th colspan="9">
+                        <th colspan="10">
                             <h2 class="text-center fw-bold">User Borrowed Books</h2>
                         </th>
                     </tr>
@@ -50,6 +57,7 @@
                         <th>Return Date & Time</th>
                         <th>Days Passed After Due Date</th>
                         <th>Fine</th>
+                        <th>Action</th>
                     </tr>
 
                     <?php
@@ -113,6 +121,15 @@
                                     $bookFine = $difference * 2;
                                     $fine = $fine + $bookFine;
                                     echo $bookFine." Tk";
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                    if ($difference > 0) {
+                                        echo "<form action='{$_SERVER['PHP_SELF']}' method='POST'>
+                                                   <button class='btn btn-warning fw-bold' type='submit' name='sendMail' value='{$row['borrow_id']}'>Send Mail</button>
+                                              </form>";
+                                    }
                                 ?>
                             </td>
                         </tr>
